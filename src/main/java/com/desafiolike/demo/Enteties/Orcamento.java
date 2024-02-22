@@ -3,6 +3,7 @@ package com.desafiolike.demo.Enteties;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orcamento")
@@ -17,13 +18,17 @@ public class Orcamento {
     @Column
     private Date data;
 
+    @OneToMany(mappedBy = "orcamento", cascade = CascadeType.ALL)
+    private List<ProdutoOrcamento> produtos;
+
     public Orcamento() {
     }
 
-    public Orcamento(int id, String nomeCliente, Date data) {
+    public Orcamento(int id, String nomeCliente, Date data, List<ProdutoOrcamento> produtos) {
         this.id = id;
         this.nomeCliente = nomeCliente;
         this.data = data;
+        this.produtos = produtos;
     }
 
     public int getId() {
@@ -48,5 +53,13 @@ public class Orcamento {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public List<ProdutoOrcamento> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<ProdutoOrcamento> produtos) {
+        this.produtos = produtos;
     }
 }
