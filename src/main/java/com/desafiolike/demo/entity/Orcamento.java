@@ -1,4 +1,4 @@
-package com.desafiolike.demo.Enteties;
+package com.desafiolike.demo.entity;
 
 import jakarta.persistence.*;
 
