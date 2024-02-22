@@ -1,17 +1,13 @@
 package com.desafiolike.demo.dto;
 
-import com.desafiolike.demo.entity.Orcamento;
 import com.desafiolike.demo.entity.ProdutoOrcamento;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 public class ProdutoOrcamentoDto {
 
     private String nome;
     private float valor;
     private int quantidade;
-    private Orcamento orcamento;
+    private OrcamentoDto orcamento;
 
     public ProdutoOrcamento convertToEntity(){
         ProdutoOrcamento produtoOrcamento = new ProdutoOrcamento();
@@ -19,7 +15,7 @@ public class ProdutoOrcamentoDto {
         produtoOrcamento.setNome(this.getNome());
         produtoOrcamento.setValor(this.getValor());
         produtoOrcamento.setQuantidade(this.getQuantidade());
-        produtoOrcamento.setOrcamento(this.getOrcamento());
+        produtoOrcamento.setOrcamento(this.getOrcamento().convertToEntity());
 
         return produtoOrcamento;
     }
@@ -27,7 +23,7 @@ public class ProdutoOrcamentoDto {
     public ProdutoOrcamentoDto() {
     }
 
-    public ProdutoOrcamentoDto(String nome, float valor, int quantidade, Orcamento orcamento) {
+    public ProdutoOrcamentoDto(String nome, float valor, int quantidade, OrcamentoDto orcamento) {
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
@@ -58,11 +54,11 @@ public class ProdutoOrcamentoDto {
         this.quantidade = quantidade;
     }
 
-    public Orcamento getOrcamento() {
+    public OrcamentoDto getOrcamento() {
         return orcamento;
     }
 
-    public void setOrcamento(Orcamento orcamento) {
+    public void setOrcamento(OrcamentoDto orcamento) {
         this.orcamento = orcamento;
     }
 }
