@@ -3,6 +3,6 @@ create table produtoOrcamento(
     orcamento_id int,
     nome VARCHAR(45),
     valor float,
-    quantidade int
+    quantidade int,
     FOREIGN KEY(orcamento_id) REFERENCES orcamento(id)
 )
