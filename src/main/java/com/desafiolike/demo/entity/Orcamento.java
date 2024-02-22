@@ -12,7 +12,7 @@ public class Orcamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(name = "nome_cliente")
     private String nomeCliente;
 
     @Column
