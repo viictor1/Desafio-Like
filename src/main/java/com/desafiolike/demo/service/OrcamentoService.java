@@ -1,5 +1,6 @@
 package com.desafiolike.demo.service;
 
+import com.desafiolike.demo.dto.OrcamentoDto;
 import com.desafiolike.demo.entity.Orcamento;
 import com.desafiolike.demo.repository.OrcamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,8 @@ public class OrcamentoService {
     @Autowired
     private OrcamentoRepository orcamentoRepository;
 
-    public void addOrcamento(Orcamento orcamento){
+    public void addOrcamento(OrcamentoDto orcamentoDto){
+        Orcamento orcamento = orcamentoDto.convertToEntity();
         orcamentoRepository.save(orcamento);
     }
 }

@@ -1,6 +1,6 @@
 package com.desafiolike.demo.controller;
 
-import com.desafiolike.demo.entity.Orcamento;
+import com.desafiolike.demo.dto.OrcamentoDto;
 import com.desafiolike.demo.service.OrcamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ public class OrcamentoController {
     private OrcamentoService orcamentoService;
 
     @PostMapping
-    public void addOrcamento(Orcamento orcamento){
+    public void addOrcamento(OrcamentoDto orcamento){
         orcamentoService.addOrcamento(orcamento);
     }
 
