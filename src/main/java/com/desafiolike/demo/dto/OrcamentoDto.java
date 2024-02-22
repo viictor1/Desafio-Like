@@ -8,7 +8,6 @@ import java.util.List;
 
 public class OrcamentoDto {
 
-    private int id;
     private String nomeCliente;
     private Date data;
     private List<ProdutoOrcamento> produtos;
@@ -16,7 +15,6 @@ public class OrcamentoDto {
     public Orcamento convertToEntity(){
         Orcamento orcamento = new Orcamento();
 
-        orcamento.setId(this.getId());
         orcamento.setNomeCliente(this.getNomeCliente());
         orcamento.setData(this.getData());
         orcamento.setProdutos(this.getProdutos());
@@ -27,19 +25,10 @@ public class OrcamentoDto {
     public OrcamentoDto() {
     }
 
-    public OrcamentoDto(int id, String nomeCliente, Date data, List<ProdutoOrcamento> produtos) {
-        this.id = id;
+    public OrcamentoDto(String nomeCliente, Date data, List<ProdutoOrcamento> produtos) {
         this.nomeCliente = nomeCliente;
         this.data = data;
         this.produtos = produtos;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNomeCliente() {
