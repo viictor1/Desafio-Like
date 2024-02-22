@@ -19,14 +19,20 @@ public class ProdutoOrcamento {
     @Column
     private int quantidade;
 
+    @ManyToOne
+    @JoinColumn(name = "orcamento_id")
+    private Orcamento orcamento;
+
+
     public ProdutoOrcamento() {
     }
 
-    public ProdutoOrcamento(int id, String nome, float valor, int quantidade) {
+    public ProdutoOrcamento(int id, String nome, float valor, int quantidade, Orcamento orcamento) {
         this.id = id;
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
+        this.orcamento = orcamento;
     }
 
     public int getId() {
@@ -59,5 +65,13 @@ public class ProdutoOrcamento {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Orcamento getOrcamento() {
+        return orcamento;
+    }
+
+    public void setOrcamento(Orcamento orcamento) {
+        this.orcamento = orcamento;
     }
 }
