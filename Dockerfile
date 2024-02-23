@@ -1,5 +1,9 @@
-FROM openjdk:17-jdk-alpine
+FROM maven:3.8.4-openjdk-17 AS build
+COPY . /app
 WORKDIR /app
-COPY target/*.jar like.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","like.jar"]
+RUN mvn package -DskipTests
+
+# Second stage: create a slim image
+FROM openjdk:17-jdk-alpine
+COPY --from=build /app/target/*.jar /like.jar
+ENTRYPOINT ["java", "-jar", "/like.jar"]

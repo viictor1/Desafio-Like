@@ -15,16 +15,16 @@ public class OrcamentoDto {
     private List<ProdutoOrcamentoDto> produtos;
 
     public Orcamento convertToEntity(){
-        Orcamento orcamento = new Orcamento();
+       /* Orcamento orcamento = new Orcamento();
         List<ProdutoOrcamento> produtos = this.getProdutos().stream().map(
                 ProdutoOrcamentoDto::convertToEntity)
                 .collect(Collectors.toList());
 
         orcamento.setNomeCliente(this.getNomeCliente());
         orcamento.setData(this.getData());
-        orcamento.setProdutos(produtos);
+        orcamento.setProdutos(produtos);*/
 
-        return orcamento;
+        return new Orcamento();
     }
 
     public OrcamentoDto() {
