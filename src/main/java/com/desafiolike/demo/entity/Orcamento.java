@@ -4,6 +4,7 @@ import com.desafiolike.demo.dto.OrcamentoDto;
 import com.desafiolike.demo.dto.ProdutoOrcamentoDto;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 @Table(name = "orcamento")
 public class Orcamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "nome_cliente")
@@ -21,18 +22,28 @@ public class Orcamento {
     @Column
     private Date data;
 
-    @OneToMany(mappedBy = "orcamento", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orcamento", cascade = CascadeType.ALL)
     private List<ProdutoOrcamento> produtos;
 
     public OrcamentoDto convertToDto() {
         OrcamentoDto dto = new OrcamentoDto();
-        List<ProdutoOrcamentoDto> produtos = this.getProdutos().stream().map(
-                        ProdutoOrcamento::convertToDto)
-                .collect(Collectors.toList());
-
         dto.setNomeCliente(this.getNomeCliente());
         dto.setData(this.getData());
-        dto.setProdutos(produtos);
+        dto.setId(this.getId());
+
+        List<ProdutoOrcamentoDto> dtoList = new ArrayList<>();
+        for (ProdutoOrcamento produto : this.getProdutos()) {
+            ProdutoOrcamentoDto produtoDto = new ProdutoOrcamentoDto();
+
+            produtoDto.setNome(produto.getNome());
+            produtoDto.setValor(produto.getValor());
+            produtoDto.setQuantidade(produto.getQuantidade());
+            produtoDto.setOrcamentoId(produto.getOrcamento().getId());
+
+            dtoList.add(produtoDto);
+        }
+
+        dto.setProdutos(dtoList);
 
         return dto;
     }

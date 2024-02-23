@@ -1,5 +1,6 @@
 package com.desafiolike.demo.entity;
 
+import com.desafiolike.demo.dto.OrcamentoDto;
 import com.desafiolike.demo.dto.ProdutoOrcamentoDto;
 import jakarta.persistence.*;
 
@@ -8,7 +9,7 @@ import jakarta.persistence.*;
 public class ProdutoOrcamento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column
@@ -20,17 +21,20 @@ public class ProdutoOrcamento {
     @Column
     private int quantidade;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "orcamento_id")
     private Orcamento orcamento;
 
     public ProdutoOrcamentoDto convertToDto(){
         ProdutoOrcamentoDto dto = new ProdutoOrcamentoDto();
-
-        dto.setValor(this.getValor());
         dto.setNome(this.getNome());
+        dto.setValor(this.getValor());
         dto.setQuantidade(this.getQuantidade());
-        dto.setOrcamento(this.getOrcamento().convertToDto());
+
+        OrcamentoDto orcamentoDto = new OrcamentoDto();
+        orcamentoDto.setId(this.getOrcamento().getId());
+
+        dto.setOrcamentoId(orcamentoDto.getId());
 
         return dto;
     }

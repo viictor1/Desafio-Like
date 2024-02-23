@@ -1,13 +1,14 @@
 package com.desafiolike.demo.dto;
 
 import com.desafiolike.demo.entity.ProdutoOrcamento;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProdutoOrcamentoDto {
 
     private String nome;
     private float valor;
     private int quantidade;
-    private OrcamentoDto orcamento;
+    private int orcamentoId;
 
     public ProdutoOrcamento convertToEntity(){
         ProdutoOrcamento produtoOrcamento = new ProdutoOrcamento();
@@ -22,11 +23,11 @@ public class ProdutoOrcamentoDto {
     public ProdutoOrcamentoDto() {
     }
 
-    public ProdutoOrcamentoDto(String nome, float valor, int quantidade, OrcamentoDto orcamento) {
+    public ProdutoOrcamentoDto(String nome, float valor, int quantidade, int orcamentoId) {
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
-        this.orcamento = orcamento;
+        this.orcamentoId = orcamentoId;
     }
 
     public String getNome() {
@@ -53,11 +54,11 @@ public class ProdutoOrcamentoDto {
         this.quantidade = quantidade;
     }
 
-    public OrcamentoDto getOrcamento() {
-        return orcamento;
+    public int getOrcamentoId() {
+        return orcamentoId;
     }
 
-    public void setOrcamento(OrcamentoDto orcamento) {
-        this.orcamento = orcamento;
+    public void setOrcamentoId(int orcamentoId) {
+        this.orcamentoId = orcamentoId;
     }
 }
