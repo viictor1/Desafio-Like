@@ -12,8 +12,9 @@ public class OrcamentoService {
     @Autowired
     private OrcamentoRepository orcamentoRepository;
 
-    public void addOrcamento(OrcamentoDto orcamentoDto){
+    public OrcamentoDto addOrcamento(OrcamentoDto orcamentoDto){
         Orcamento orcamento = orcamentoDto.convertToEntity();
-        orcamentoRepository.save(orcamento);
+        orcamento = orcamentoRepository.save(orcamento);
+        return orcamento.convertToDto();
     }
 }

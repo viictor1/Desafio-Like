@@ -19,7 +19,7 @@ public class OrcamentoController {
     private OrcamentoService orcamentoService;
 
     @PostMapping
-    public void addOrcamento(OrcamentoDto orcamento){
+    public ResponseEntity<OrcamentoDto> addOrcamento(OrcamentoDto orcamento){
 
         orcamento = orcamentoService.addOrcamento(orcamento);
 

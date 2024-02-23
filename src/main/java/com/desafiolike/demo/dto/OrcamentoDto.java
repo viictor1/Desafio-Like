@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class OrcamentoDto {
 
+    private int id;
     private String nomeCliente;
     private Date data;
     private List<ProdutoOrcamentoDto> produtos;
@@ -29,7 +30,8 @@ public class OrcamentoDto {
     public OrcamentoDto() {
     }
 
-    public OrcamentoDto(String nomeCliente, Date data, List<ProdutoOrcamentoDto> produtos) {
+    public OrcamentoDto(int id, String nomeCliente, Date data, List<ProdutoOrcamentoDto> produtos) {
+        this.id = id;
         this.nomeCliente = nomeCliente;
         this.data = data;
         this.produtos = produtos;
@@ -57,5 +59,13 @@ public class OrcamentoDto {
 
     public void setProdutos(List<ProdutoOrcamentoDto> produtos) {
         this.produtos = produtos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

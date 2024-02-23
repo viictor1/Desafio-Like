@@ -1,5 +1,6 @@
 package com.desafiolike.demo.entity;
 
+import com.desafiolike.demo.dto.ProdutoOrcamentoDto;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,6 +24,16 @@ public class ProdutoOrcamento {
     @JoinColumn(name = "orcamento_id")
     private Orcamento orcamento;
 
+    public ProdutoOrcamentoDto convertToDto(){
+        ProdutoOrcamentoDto dto = new ProdutoOrcamentoDto();
+
+        dto.setValor(this.getValor());
+        dto.setNome(this.getNome());
+        dto.setQuantidade(this.getQuantidade());
+        dto.setOrcamento(this.getOrcamento().convertToDto());
+
+        return dto;
+    }
 
     public ProdutoOrcamento() {
     }

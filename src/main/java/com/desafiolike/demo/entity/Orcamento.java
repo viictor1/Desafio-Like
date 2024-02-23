@@ -1,9 +1,12 @@
 package com.desafiolike.demo.entity;
 
+import com.desafiolike.demo.dto.OrcamentoDto;
+import com.desafiolike.demo.dto.ProdutoOrcamentoDto;
 import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "orcamento")
@@ -20,6 +23,19 @@ public class Orcamento {
 
     @OneToMany(mappedBy = "orcamento", cascade = CascadeType.ALL)
     private List<ProdutoOrcamento> produtos;
+
+    public OrcamentoDto convertToDto() {
+        OrcamentoDto dto = new OrcamentoDto();
+        List<ProdutoOrcamentoDto> produtos = this.getProdutos().stream().map(
+                        ProdutoOrcamento::convertToDto)
+                .collect(Collectors.toList());
+
+        dto.setNomeCliente(this.getNomeCliente());
+        dto.setData(this.getData());
+        dto.setProdutos(produtos);
+
+        return dto;
+    }
 
     public Orcamento() {
     }
@@ -62,4 +78,6 @@ public class Orcamento {
     public void setProdutos(List<ProdutoOrcamento> produtos) {
         this.produtos = produtos;
     }
+
+
 }
