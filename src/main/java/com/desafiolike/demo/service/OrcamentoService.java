@@ -4,13 +4,11 @@ import com.desafiolike.demo.dto.OrcamentoDto;
 import com.desafiolike.demo.entity.Orcamento;
 import com.desafiolike.demo.entity.ProdutoOrcamento;
 import com.desafiolike.demo.repository.OrcamentoRepository;
-import com.desafiolike.demo.repository.ProdutoOrcamentoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,30 +18,29 @@ public class OrcamentoService {
     private OrcamentoRepository orcamentoRepository;
 
     @Autowired
-    private ProdutoOrcamentoRepository produtoOrcamentoRepository;
+    private ProdutoOrcamentoService produtoOrcamentoService;
 
     @Transactional(rollbackOn = Exception.class)
     public OrcamentoDto addOrcamento(OrcamentoDto orcamentoDto){
         try {
-            Orcamento orcamento = orcamentoDto.convertToEntity();
-            orcamento = orcamentoRepository.save(orcamento);
 
-            List<ProdutoOrcamento> produtos = new ArrayList<>(orcamento.getProdutos());
+            Orcamento orcamento = orcamentoRepository.save(orcamentoDto.convertToEntity());
 
-            for (ProdutoOrcamento produto : produtos) {
-                produto.setOrcamento(orcamento);
-            }
-
-            produtos = produtoOrcamentoRepository.saveAll(produtos);
+            List<ProdutoOrcamento> produtos = produtoOrcamentoService.saveProdutos(orcamento);
             orcamento.setProdutos(produtos);
 
             return orcamento.convertToDto();
+
         } catch (Exception e) {
-            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            e.printStackTrace();
+            rollbackAndPrint(e);
         }
 
         return null;
+    }
+
+    private void rollbackAndPrint(Exception e){
+        TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        e.printStackTrace();
     }
 
 }
