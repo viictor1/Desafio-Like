@@ -21,10 +21,10 @@ public class OrcamentoController {
 
     @PostMapping
     public ResponseEntity<OrcamentoDto> addOrcamento(@RequestBody OrcamentoDto orcamento){
-        
-        //orcamento = orcamentoService.addOrcamento(orcamento);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id")
+        orcamento = orcamentoService.addOrcamento(orcamento);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(orcamento.getId()).toUri();
 
         return ResponseEntity.created(uri).body(orcamento);

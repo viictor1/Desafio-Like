@@ -15,7 +15,6 @@ public class ProdutoOrcamentoDto {
         produtoOrcamento.setNome(this.getNome());
         produtoOrcamento.setValor(this.getValor());
         produtoOrcamento.setQuantidade(this.getQuantidade());
-        produtoOrcamento.setOrcamento(this.getOrcamento().convertToEntity());
 
         return produtoOrcamento;
     }

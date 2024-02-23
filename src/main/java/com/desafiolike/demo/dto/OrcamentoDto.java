@@ -3,6 +3,7 @@ package com.desafiolike.demo.dto;
 import com.desafiolike.demo.entity.Orcamento;
 import com.desafiolike.demo.entity.ProdutoOrcamento;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,16 +16,20 @@ public class OrcamentoDto {
     private List<ProdutoOrcamentoDto> produtos;
 
     public Orcamento convertToEntity(){
-       /* Orcamento orcamento = new Orcamento();
-        List<ProdutoOrcamento> produtos = this.getProdutos().stream().map(
-                ProdutoOrcamentoDto::convertToEntity)
-                .collect(Collectors.toList());
+        Orcamento orcamento = new Orcamento();
+        List<ProdutoOrcamento> produtos = new ArrayList<>();
+
+        if (!this.produtos.isEmpty()) {
+            produtos = this.getProdutos().stream().map(
+                            ProdutoOrcamentoDto::convertToEntity)
+                    .collect(Collectors.toList());
+        }
 
         orcamento.setNomeCliente(this.getNomeCliente());
         orcamento.setData(this.getData());
-        orcamento.setProdutos(produtos);*/
+        orcamento.setProdutos(produtos);
 
-        return new Orcamento();
+        return orcamento;
     }
 
     public OrcamentoDto() {
