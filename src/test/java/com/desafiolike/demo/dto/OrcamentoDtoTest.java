@@ -38,6 +38,8 @@ public class OrcamentoDtoTest {
         assertEquals(orcamento.getNomeCliente(), orcamentoDto.getNomeCliente());
         assertEquals(orcamento.getData(), orcamentoDto.getData());
 
+        assertEquals(orcamento.getProdutos().size(), orcamentoDto.getProdutos().size());
+
         int i = 0;
 
         for(ProdutoOrcamento p : orcamento.getProdutos()){

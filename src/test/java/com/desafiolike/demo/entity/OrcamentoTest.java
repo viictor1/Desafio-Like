@@ -39,6 +39,8 @@ public class OrcamentoTest {
 
         int i = 0;
 
+        assertEquals(orcamento.getProdutos().size(), orcamentoDto.getProdutos().size());
+
         for(ProdutoOrcamento p : orcamento.getProdutos()){
             ProdutoOrcamentoDto dtoP = orcamentoDto.getProdutos().get(i);
 
