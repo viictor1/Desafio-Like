@@ -11,7 +11,7 @@ public class Factory {
     public static Orcamento createOrcamento(){
         Orcamento orcamento = new Orcamento();
 
-        orcamento.setId((int) (Math.random() * 100));
+        orcamento.setId(1);
         orcamento.setData(new Date());
         orcamento.setNomeCliente("Cliente Teste");
 
@@ -26,7 +26,7 @@ public class Factory {
     public static ProdutoOrcamento createProduto(Orcamento o){
         ProdutoOrcamento produto = new ProdutoOrcamento();
 
-        produto.setId((int) (Math.random() * 100));
+        produto.setId(1);
         produto.setQuantidade(5);
         produto.setValor(2.5F);
         produto.setOrcamento(o);

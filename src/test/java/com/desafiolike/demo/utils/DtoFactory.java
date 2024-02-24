@@ -17,18 +17,18 @@ public class DtoFactory {
 
         orcamentoDto.setProdutos(new ArrayList<>());
 
-        orcamentoDto.getProdutos().add(createProdutoOrcamentoDto());
+        orcamentoDto.getProdutos().add(createProdutoOrcamentoDto(orcamentoDto));
 
         return orcamentoDto;
     }
 
-    public static ProdutoOrcamentoDto createProdutoOrcamentoDto() {
+    public static ProdutoOrcamentoDto createProdutoOrcamentoDto(OrcamentoDto dto) {
         ProdutoOrcamentoDto produtoDto = new ProdutoOrcamentoDto();
 
         produtoDto.setNome("Produto Teste");
         produtoDto.setQuantidade(5);
         produtoDto.setValor(2.5F);
-        produtoDto.setOrcamentoId(1);
+        produtoDto.setOrcamentoId(dto.getId());
 
         return produtoDto;
     }
