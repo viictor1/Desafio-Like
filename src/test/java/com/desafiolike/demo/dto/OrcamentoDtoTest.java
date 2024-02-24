@@ -1,9 +1,9 @@
-package com.desafiolike.demo.entity;
+package com.desafiolike.demo.dto;
 
-import com.desafiolike.demo.dto.OrcamentoDto;
-import com.desafiolike.demo.dto.ProdutoOrcamentoDto;
-import com.desafiolike.demo.utils.Factory;
-import org.aspectj.lang.annotation.Before;
+import com.desafiolike.demo.entity.Orcamento;
+import com.desafiolike.demo.entity.ProdutoOrcamento;
+import com.desafiolike.demo.utils.DtoFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,24 +18,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @ExtendWith(SpringExtension.class)
-public class OrcamentoTest {
-
-    @InjectMocks
-    private Orcamento orcamento;
+public class OrcamentoDtoTest {
 
     @Mock
+    private Orcamento orcamento;
+
+    @InjectMocks
     private OrcamentoDto orcamentoDto;
 
     @BeforeEach
-    void setup(){
-        orcamento = Factory.createOrcamento();
-        orcamentoDto = orcamento.convertToDto();
+    public void setUp() {
+        orcamentoDto = DtoFactory.createOrcamentoDto();
+        orcamento = orcamentoDto.convertToEntity();
     }
 
     @Test
-    public void testConvertOrcamentoToDto(){
+    public void testConvertDtoToOrcamento(){
 
-        assertEquals(orcamento.getId(), orcamentoDto.getId());
         assertEquals(orcamento.getNomeCliente(), orcamentoDto.getNomeCliente());
         assertEquals(orcamento.getData(), orcamentoDto.getData());
 
@@ -47,16 +46,14 @@ public class OrcamentoTest {
             assertEquals(p.getNome(), dtoP.getNome());
             assertEquals(p.getQuantidade(), dtoP.getQuantidade());
             assertEquals(p.getValor(), dtoP.getValor());
-            assertEquals(p.getOrcamento().getId(), dtoP.getOrcamentoId());
 
             i++;
         }
     }
 
     @Test
-    public void testConvertToDtoNotEqualsWrongValues(){
+    public void testConvertDtoToOrcamentoNotEqualsWrongValues(){
 
-        assertNotEquals(orcamento.getId(), orcamentoDto.getId() + 1);
         assertNotEquals(orcamento.getNomeCliente(), orcamentoDto.getNomeCliente().concat("erro"));
         assertNotEquals(orcamento.getData(), new Date(1920));
 
@@ -68,7 +65,6 @@ public class OrcamentoTest {
             assertNotEquals(p.getNome(), dtoP.getNome().concat("erro"));
             assertNotEquals(p.getQuantidade(), dtoP.getQuantidade() + 1);
             assertNotEquals(p.getValor(), dtoP.getValor() + 1F);
-            assertNotEquals(p.getOrcamento().getId(), dtoP.getOrcamentoId() + 1);
 
             i++;
         }
