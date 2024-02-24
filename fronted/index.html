@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Desafio Like</title>
 </head>
 <body>
     <div class="orcamentos">
         <form action="">
+            <h3>Cadastro de Orçamentos</h3>
             <div class="field">
                 <label for="nomeCliente">Nome do Cliente</label>
                 <input name="nomeCliente" type="text">
@@ -16,10 +18,7 @@
                 <label for="data">Data de Solicitação</label>
                 <input name="data" type="date">
             </div>
-            <div class="field">
-                <label for="data">Data de Solicitação</label>
-                <input name="data" type="date">
-            </div>
+            <div class="produtos"></div>
             <hr>
             <div class="addProduto">
                 <div class="field">
@@ -34,9 +33,9 @@
                     <label for="quantidade">Quantidade</label>
                     <input name="quantidade" type="number">
                 </div>
-                <button>Adicionar</button>
+                <button class="adicionar">Adicionar</button>
             </div>
-            <div class="produtos"></div>
+            
             <button>Salvar</button>
         </form>
     </div>
