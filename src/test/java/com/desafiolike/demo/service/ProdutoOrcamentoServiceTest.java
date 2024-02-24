@@ -44,8 +44,7 @@ public class ProdutoOrcamentoServiceTest {
         assertEquals(orcamento.getProdutos().size(), savedProdutos.size());
 
         int i = 0;
-        for(ProdutoOrcamento p: savedProdutos){
-            ProdutoOrcamento savedProduto = savedProdutos.get(i);
+        for(ProdutoOrcamento savedProduto: savedProdutos){
             ProdutoOrcamento originalProduto = orcamento.getProdutos().get(i);
 
             assertEquals(originalProduto.getNome(), savedProduto.getNome());

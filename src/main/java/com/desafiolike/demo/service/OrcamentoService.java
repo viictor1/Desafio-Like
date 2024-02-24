@@ -22,25 +22,12 @@ public class OrcamentoService {
 
     @Transactional(rollbackOn = Exception.class)
     public OrcamentoDto addOrcamento(OrcamentoDto orcamentoDto){
-        try {
 
-            Orcamento orcamento = orcamentoRepository.save(orcamentoDto.convertToEntity());
+        Orcamento orcamento = orcamentoRepository.save(orcamentoDto.convertToEntity());
 
-            List<ProdutoOrcamento> produtos = produtoOrcamentoService.saveProdutos(orcamento);
-            orcamento.setProdutos(produtos);
+        orcamento.setProdutos(produtoOrcamentoService.saveProdutos(orcamento));
 
-            return orcamento.convertToDto();
-
-        } catch (Exception e) {
-            rollbackAndPrint(e);
-        }
-
-        return null;
-    }
-
-    private void rollbackAndPrint(Exception e){
-        TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-        e.printStackTrace();
+        return orcamento.convertToDto();
     }
 
 }

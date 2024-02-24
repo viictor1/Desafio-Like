@@ -12,7 +12,7 @@ public class Factory {
         Orcamento orcamento = new Orcamento();
 
         orcamento.setId(1);
-        orcamento.setData(new Date());
+        orcamento.setData(new Date(2024, 02, 24));
         orcamento.setNomeCliente("Cliente Teste");
 
         orcamento.setProdutos(new ArrayList<>());
@@ -26,7 +26,7 @@ public class Factory {
     public static Orcamento createOrcamentoNoId(){
         Orcamento orcamento = new Orcamento();
 
-        orcamento.setData(new Date());
+        orcamento.setData(new Date(2024, 02, 24));
         orcamento.setNomeCliente("Cliente Teste");
 
         orcamento.setProdutos(new ArrayList<>());
