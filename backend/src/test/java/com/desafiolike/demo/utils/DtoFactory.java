@@ -5,6 +5,7 @@ import com.desafiolike.demo.dto.ProdutoOrcamentoDto;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DtoFactory {
 
@@ -57,5 +58,13 @@ public class DtoFactory {
         produtoDto.setOrcamentoId(dto.getId());
 
         return produtoDto;
+    }
+
+    public static List<OrcamentoDto> createOrcamentoList(){
+        List<OrcamentoDto> orcamentos = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
+            orcamentos.add(createOrcamentoDto());
+        }
+        return orcamentos;
     }
 }

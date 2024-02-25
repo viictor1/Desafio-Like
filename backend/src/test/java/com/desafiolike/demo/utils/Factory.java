@@ -5,6 +5,7 @@ import com.desafiolike.demo.entity.ProdutoOrcamento;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Factory {
 
@@ -58,5 +59,13 @@ public class Factory {
         produto.setNome("Produto Teste");
 
         return produto;
+    }
+
+    public static List<Orcamento> createOrcamentoList(){
+        List<Orcamento> orcamentos = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
+            orcamentos.add(createOrcamento());
+        }
+        return orcamentos;
     }
 }

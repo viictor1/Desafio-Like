@@ -32,8 +32,9 @@ public class OrcamentoService {
     public List<OrcamentoDto> getOrcamentos(){
         List<OrcamentoDto> orcamentosDto = new ArrayList<>();
         List<Orcamento> orcamentos = orcamentoRepository.findAll();
-        for(Orcamento o : orcamentos){
-           orcamentosDto.add(o.convertToDto());
+
+        for (Orcamento orcamento : orcamentos) {
+            orcamentosDto.add(orcamento.convertToDto());
         }
 
         return orcamentosDto;

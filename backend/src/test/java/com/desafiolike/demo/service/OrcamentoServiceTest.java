@@ -12,9 +12,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.PlatformTransactionManager;
 
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -33,17 +33,21 @@ public class OrcamentoServiceTest {
     private ProdutoOrcamentoService produtoOrcamentoService;
 
     private OrcamentoDto orcamentoDto;
+    private List<Orcamento> orcamentosList;
 
     @BeforeEach
     void setup(){
         orcamentoDto = DtoFactory.createOrcamentoDtoNoId();
         Orcamento orcamentoSalvo = Factory.createOrcamento();
+        orcamentosList = Factory.createOrcamentoList();
 
-        Mockito.when(orcamentoRepository.save(Mockito.any(Orcamento.class)))
+        when(orcamentoRepository.save(Mockito.any(Orcamento.class)))
                 .thenReturn(orcamentoSalvo);
 
         when(produtoOrcamentoService.saveProdutos(Mockito.any(Orcamento.class)))
                 .thenReturn(orcamentoSalvo.getProdutos());
+
+        when(orcamentoRepository.findAll()).thenReturn(orcamentosList);
 
 
     }
@@ -69,6 +73,24 @@ public class OrcamentoServiceTest {
         assertNotEquals(orcamentoDto.getData(), new Date());
         assertNotEquals(orcamentoDto.getProdutos().size(), savedDto.getProdutos().size() + 1);
 
+    }
+
+    @Test
+    public void getAllOrcamentosTest(){
+        List<OrcamentoDto> orcamentosDto = orcamentoService.getOrcamentos();
+
+        assertEquals(10, orcamentosDto.size());
+
+        int i = 0;
+        for(OrcamentoDto dto: orcamentosDto){
+            Orcamento orcamento = orcamentosList.get(i);
+
+            assertEquals(orcamento.getId(), dto.getId());
+            assertEquals(orcamento.getNomeCliente(), dto.getNomeCliente());
+            assertEquals(orcamento.getData(), dto.getData());
+
+            i++;
+        }
     }
 
 }

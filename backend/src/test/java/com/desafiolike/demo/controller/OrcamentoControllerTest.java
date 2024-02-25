@@ -52,4 +52,13 @@ public class OrcamentoControllerTest {
 
     }
 
+    @Test
+    public void shouldReturnOkWhenGettingOrcamentos() throws Exception {
+        ResultActions result = mockMvc.perform(
+                        MockMvcRequestBuilders.get(url)
+                            .accept(MediaType.APPLICATION_JSON))
+                            .andExpect(MockMvcResultMatchers.status().isOk());
+
+    }
+
 }
