@@ -2,13 +2,12 @@ package com.desafiolike.demo.service;
 
 import com.desafiolike.demo.dto.OrcamentoDto;
 import com.desafiolike.demo.entity.Orcamento;
-import com.desafiolike.demo.entity.ProdutoOrcamento;
 import com.desafiolike.demo.repository.OrcamentoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +27,16 @@ public class OrcamentoService {
         orcamento.setProdutos(produtoOrcamentoService.saveProdutos(orcamento));
 
         return orcamento.convertToDto();
+    }
+
+    public List<OrcamentoDto> getOrcamentos(){
+        List<OrcamentoDto> orcamentosDto = new ArrayList<>();
+        List<Orcamento> orcamentos = orcamentoRepository.findAll();
+        for(Orcamento o : orcamentos){
+           orcamentosDto.add(o.convertToDto());
+        }
+
+        return orcamentosDto;
     }
 
 }

@@ -2,6 +2,7 @@ package com.desafiolike.demo.dto;
 
 import com.desafiolike.demo.entity.Orcamento;
 import com.desafiolike.demo.entity.ProdutoOrcamento;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +13,7 @@ public class OrcamentoDto {
 
     private int id;
     private String nomeCliente;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date data;
     private List<ProdutoOrcamentoDto> produtos;
 
