@@ -1,6 +1,6 @@
 body{
     background-color: #EEF5FF;
-    font-family: 'Lato', 'Times New Roman', Times, serif;
+    font-family: 'Inter', 'Times New Roman', Times, serif;
 }
 
 h3{
@@ -19,6 +19,8 @@ input[type="number"] {
 input[type="text"] {
     text-align: center;
 }
+
+
 .salvar, .adicionar {
   background-color: #fff;
   border: 1px solid #d5d9d9;

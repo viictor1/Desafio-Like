@@ -7,7 +7,7 @@ function adicionarProduto(){
     let quantidade = document.querySelector('#quantidade').value
 
     let produto = {
-        nomeProduto: nomeProduto,
+        nome: nomeProduto,
         valor: valor,
         quantidade: quantidade
     };
@@ -23,15 +23,15 @@ function updateHTMLList(){
 
     produtos.forEach((p, index) => {
         let li = document.createElement('li');
-        li.innerHTML = p.nomeProduto + ' Valor: ' + p.valor + ' Quantidade: ' + p.quantidade + '  ';
+        li.innerHTML = p.nome + ' Valor: ' + p.valor + ' Quantidade: ' + p.quantidade + '  ';
 
         const remover = document.createElement('button');
+        remover.addEventListener('click', removerProduto)
+
         var img = document.createElement("img");
         img.src = "./assets/remover.svg";
         img.alt = "SVG Icon";
-
         remover.appendChild(img);
-        remover.addEventListener('click', removerProduto)
 
         li.appendChild(remover);
         list.appendChild(li);
@@ -63,8 +63,39 @@ function salvar(){
     let nomeCliente = document.querySelector('#nomeCliente').value
     let data = document.querySelector('#data').value
 
+    const apiURL = 'http://localhost:8080/orcamento'
+    const dados = {
+        nomeCliente: nomeCliente,
+        data: data,
+        produtos: produtos
+    }
+
+    sendRequest(apiURL, dados)
     cleanOrcamento()
     emptyProdutos()
+}
+
+function sendRequest(apiURL, dados){
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dados),
+    };
+
+    fetch(apiURL, requestOptions)
+    .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        return response.json()
+      })
+      .catch(error => {
+        console.error('Error:', error)
+      });
+
 }
 
 function cleanOrcamento(){
