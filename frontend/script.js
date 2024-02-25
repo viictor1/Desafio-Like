@@ -1,4 +1,5 @@
 var produtos = []
+const apiURL = 'http://localhost:8080/orcamento'
 
 
 function adicionarProduto(){
@@ -63,19 +64,18 @@ function salvar(){
     let nomeCliente = document.querySelector('#nomeCliente').value
     let data = document.querySelector('#data').value
 
-    const apiURL = 'http://localhost:8080/orcamento'
     const dados = {
         nomeCliente: nomeCliente,
         data: data,
         produtos: produtos
     }
 
-    sendRequest(apiURL, dados)
+    sendRequest(dados)
     cleanOrcamento()
     emptyProdutos()
 }
 
-function sendRequest(apiURL, dados){
+function sendRequest(dados){
 
     const requestOptions = {
         method: 'POST',
@@ -107,4 +107,62 @@ function emptyProdutos(){
     produtos = []
     let list = document.querySelector('#productsList')
     list.innerText = ''
+}
+
+function loadOrcamentos(){
+    const outputElement = document.querySelector('#orcamentosList');
+    outputElement.innerHTML = ''
+
+    const requestOptions = {
+        method: 'GET',
+    };
+
+    fetch(apiURL, requestOptions)
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        data.forEach(entry => {
+            addOrcamentoToList(entry, outputElement)
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+}
+
+function addOrcamentoToList(entry, outputElement){
+    
+    const li = document.createElement('li');
+    const clientName = document.createElement('p');
+    const date = document.createElement('p');
+    const productList = document.createElement('ul');
+
+    clientName.textContent = `Nome do Cliente: ${entry.nomeCliente}`;
+    date.textContent = `Data: ${entry.data}`;
+    
+    entry.produtos.forEach(product => {
+        const productItem = document.createElement('li');
+        productItem.textContent = `Produto: ${product.nome}, Valor: ${product.valor}, Quantidade: ${product.quantidade}`;
+        productList.appendChild(productItem);
+    });
+
+    li.appendChild(clientName);
+    li.appendChild(date);
+    li.appendChild(productList);
+    li.classList.add('list-group-item')
+
+    li.addEventListener('mouseover', () =>{
+        li.classList.add('active')
+    })
+
+    li.addEventListener('mouseleave', () =>{
+        li.classList.remove('active')
+    })
+
+    outputElement.appendChild(li);
 }
