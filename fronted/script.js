@@ -17,17 +17,36 @@ function adicionarProduto(){
     cleanProdutos()
 }
 
-
 function updateHTMLList(){
-    let list = document.querySelector('#productsList')
-    list.innerHTML = ''
-    produtos.forEach( (p) => {
+    let list = document.querySelector('#productsList');
+    list.innerHTML = '';
+
+    produtos.forEach((p, index) => {
         let li = document.createElement('li');
-        li.innerText = p.nomeProduto + ' Valor: ' + p.valor + ' Quantidade: ' + p.quantidade;
+        li.innerHTML = p.nomeProduto + ' Valor: ' + p.valor + ' Quantidade: ' + p.quantidade + '  ';
+
+        const remover = document.createElement('button');
+        var img = document.createElement("img");
+        img.src = "./assets/remover.svg";
+        img.alt = "SVG Icon";
+
+        remover.appendChild(img);
+        remover.addEventListener('click', removerProduto)
+
+        li.appendChild(remover);
         list.appendChild(li);
-    })
-    list.innerText += '\n\nProdutos Diferentes Totais: ' + produtos.length
+    });
+
+    let totalCount = document.createElement('li');
+    totalCount.textContent = 'Produtos Diferentes Totais: ' + produtos.length;
+    list.appendChild(totalCount);
 }
+
+function removerProduto(index) {
+    produtos.splice(index, 1);
+    updateHTMLList();
+}
+
 
 function cleanProdutos(){
     document.querySelector('#nomeProduto').value = ''
