@@ -20,7 +20,7 @@ function adicionarProduto(){
 
 function updateHTMLList(){
     let list = document.querySelector('#productsList')
-    list.innerText = ''
+    list.innerHTML = ''
     produtos.forEach( (p) => {
         let li = document.createElement('li');
         li.innerText = p.nomeProduto + ' Valor: ' + p.valor + ' Quantidade: ' + p.quantidade;
@@ -33,4 +33,28 @@ function cleanProdutos(){
     document.querySelector('#nomeProduto').value = ''
     document.querySelector('#valor').value = ''
     document.querySelector('#quantidade').value = ''
+}
+
+function salvar(){
+    if(produtos.length == 0){
+        alert('Adicione algum produto')
+        return;
+    }
+
+    let nomeCliente = document.querySelector('#nomeCliente').value
+    let data = document.querySelector('#data').value
+
+    cleanOrcamento()
+    emptyProdutos()
+}
+
+function cleanOrcamento(){
+    document.querySelector('#nomeCliente').value = ''
+    document.querySelector('#data').value = ''
+}
+
+function emptyProdutos(){
+    produtos = []
+    let list = document.querySelector('#productsList')
+    list.innerText = ''
 }

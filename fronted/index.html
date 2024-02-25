@@ -5,29 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
     <title>Desafio Like</title>
 </head>
 <body>
     <div class="orcamentos">
         <div class="forms">
-            <form action="">
-            <h3>Cadastro de Orçamentos</h3>
-            <div class="field">
-                <label for="nomeCliente">Nome do Cliente</label>
-                <input id="nomeCliente" type="text">
-            </div>
-            <div class="field">
-                <label for="data">Data de Solicitação</label>
-                <input id="data" type="date">
-            </div>
+            <form onsubmit="return false;">
+                <h3>Cadastro de Orçamentos</h3>
+                <div class="top">
+                    <div class="field">
+                        <label for="nomeCliente">Nome do Cliente</label>
+                        <input id="nomeCliente" type="text">
+                    </div>
+                    <div class="field">
+                        <label for="data">Data de Solicitação</label>
+                        <input id="data" type="date">
+                    </div>
+                    </form>
+                    <div class="produtos"><ul id="productsList"></ul></div>
+                    <button class="salvar" onclick="salvar()">Salvar</button>
+                </div>
             </form>
-            <div class="produtos"><ul id="productsList"></ul></div>
-            <button>Salvar</button>
-            <hr>
             
-            </form>
+            
             <div class="addProduto">
+                <hr>
                 <form class="formProdutos" onsubmit="return false;">
+                    <h3>Cadastro Produtos</h3>
                     <div class="field">
                         <label for="nomeProduto">Nome do Produto</label>
                         <input id="nomeProduto" type="text">
