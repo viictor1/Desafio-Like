@@ -2,24 +2,24 @@
 <p>Projeto desenvolvido ao longo de 4 dias para o teste técnico da Like Sistemas</p>
 
 ## Desafio Proposto
-- Tela de cadastro de orçamentos <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17l-5-5.299 1.399-1.43 3.574 3.736 6.572-7.007 1.455 1.403-8 8.597z"/></svg>
-- Lista com os produtos cadastrados no orçamento atual <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17l-5-5.299 1.399-1.43 3.574 3.736 6.572-7.007 1.455 1.403-8 8.597z"/></svg>
-- Salvar os orçamentos no bando de dados <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17l-5-5.299 1.399-1.43 3.574 3.736 6.572-7.007 1.455 1.403-8 8.597z"/></svg>
-
+- [x] Tela de cadastro de orçamentos 
+- [x] Lista com os produtos cadastrados no orçamento atual
+- [x] Salvar os orçamentos no bando de dados
+  
 ## Extra
-- Tela separada para cadastro de produtos no orçamento atual <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17l-5-5.299 1.399-1.43 3.574 3.736 6.572-7.007 1.455 1.403-8 8.597z"/></svg>
-- Opção de remover produtos antes de salvar no banco de dados <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17l-5-5.299 1.399-1.43 3.574 3.736 6.572-7.007 1.455 1.403-8 8.597z"/></svg>
-- Tela contendo os orçamentos salvos <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17l-5-5.299 1.399-1.43 3.574 3.736 6.572-7.007 1.455 1.403-8 8.597z"/></svg>
-- Testes automatizados no backend<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17l-5-5.299 1.399-1.43 3.574 3.736 6.572-7.007 1.455 1.403-8 8.597z"/></svg>
-- Suporte à Docker <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17l-5-5.299 1.399-1.43 3.574 3.736 6.572-7.007 1.455 1.403-8 8.597z"/></svg>
+- [x] Tela separada para cadastro de produtos no orçamento atual 
+- [x] Opção de remover produtos antes de salvar no banco de dados 
+- [x] Tela contendo os orçamentos salvos 
+- [x] Testes automatizados no backend
+- [x] Suporte à Docker 
 
 ## Como rodar a aplicação
 1. Navegue até a pasta /backend e utilize o comando:
 ```console
 $ docker-compose up -d
 ```
-2. Navegue até a pasta /frontend e abra o arquivo:
-'index.html'
+2. Navegue até a pasta /frontend e abra o arquivo: <br>
+`index.html` 
 3. Para verificar se o projeto e o banco estão rodando corretamente:
 ```console
 $ docker ps
@@ -28,8 +28,8 @@ $ docker ps
 ```console
 $ docker exec -it db_like psql -U like likedb
 ```
-5. Para ver a documentação do backend, acesse o seguinte link com o projeto rodando:
-'http://localhost:8080/swagger-ui/index.html#/'
+5. Para ver a documentação do backend, acesse o seguinte link com o projeto rodando: <br>
+`http://localhost:8080/swagger-ui/index.html#/`
 
 
 ## Tecnologias Utilizadaas
@@ -43,13 +43,13 @@ $ docker exec -it db_like psql -U like likedb
 - JUnit
 - Docker
 - Mockito
+- Swagger
 - HTML, CSS e JavaScript
 - BootStrap
-- Swagger
 
 ## Cadastrar Orçamento
-'POST http://localhost:8080/orcamento'
-'Request'
+`POST http://localhost:8080/orcamento` <br>
+`Request`
 ```jsx
 {
 {
@@ -71,8 +71,8 @@ $ docker exec -it db_like psql -U like likedb
 }
 ```
 
-'Response'
-´´´jsx
+`Response`
+```jsx
 {
     {
     "id": 152,
@@ -94,12 +94,13 @@ $ docker exec -it db_like psql -U like likedb
     ]
 }
 }
+```
 
 ## Buscar Orçamentos
-'GET http://localhost:8080/orcamento'
+`GET http://localhost:8080/orcamento`
 
-'Response'
-´´´jsx
+`Response`
+```jsx
 {
 [
     {
@@ -142,3 +143,4 @@ $ docker exec -it db_like psql -U like likedb
     }
 ]
 }
+``` 
