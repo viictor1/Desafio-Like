@@ -7,32 +7,40 @@
 - [x] Salvar os orçamentos no bando de dados
   
 ## Extra
-- [x] Tela separada para cadastro de produtos no orçamento atual 
-- [x] Opção de remover produtos antes de salvar no banco de dados 
+- [x] Tela separada para cadastrar os produtos do orçamento atual
+- [x] Opção de remover produtos da lista antes de salvar no banco de dados 
 - [x] Tela contendo os orçamentos salvos 
 - [x] Testes automatizados no backend
 - [x] Suporte à Docker 
 
 ## Como rodar a aplicação
-1. Navegue até a pasta /backend e utilize o comando:
+1. Instale ou clone o repositório:
+```console
+$ git clone https://github.com/viictor1/desafio-tecnico-like.git
+```
+2. Navegue até a pasta /backend e utilize o comando:
 ```console
 $ docker-compose up -d
 ```
-2. Navegue até a pasta /frontend e abra o arquivo: <br>
+3. Navegue até a pasta /frontend e abra o arquivo: <br>
 `index.html` 
-3. Para verificar se o projeto e o banco estão rodando corretamente:
+4. Para verificar se o projeto e o banco estão rodando corretamente:
 ```console
 $ docker ps
 ```
-4. Para acessar o banco de dados:
+5. Para acessar o banco de dados:
 ```console
 $ docker exec -it db_like psql -U like likedb
 ```
-5. Para ver a documentação do backend, acesse o seguinte link com o projeto rodando: <br>
+6. Para ver a documentação do backend, acesse o seguinte link com o projeto rodando: <br>
 `http://localhost:8080/swagger-ui/index.html#/`
+7. As migrations criadas para o banco de dados estão localizadas no diretório: <br>
+   `/backend/src/main/resources/db/migration/`
+8. Os testes automatizados estão localizados no diretório: <br>
+   `/backend/src/test/java/com/desafiolike/demo/`
 
 
-## Tecnologias Utilizadaas
+## Tecnologias Utilizadas
 
 - Java 17
 - Spring Boot 3.2.2
