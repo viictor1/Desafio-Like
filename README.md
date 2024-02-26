@@ -18,11 +18,11 @@
 ```console
 $ git clone https://github.com/viictor1/desafio-tecnico-like.git
 ```
-2. Navegue até a pasta /backend e utilize o comando:
+2. Navegue até a pasta /desafio-tecnico-like/backend e utilize o comando:
 ```console
 $ docker-compose up -d
 ```
-3. Navegue até a pasta /frontend e abra o arquivo: <br>
+3. Navegue até a pasta /desafio-tecnico-like/frontend e abra o arquivo: <br>
 `index.html` 
 4. Para verificar se o projeto e o banco estão rodando corretamente:
 ```console
@@ -35,9 +35,9 @@ $ docker exec -it db_like psql -U like likedb
 6. Para ver a documentação do backend, acesse o seguinte link com o projeto rodando: <br>
 `http://localhost:8080/swagger-ui/index.html#/`
 7. As migrations criadas para o banco de dados estão localizadas no diretório: <br>
-   `/backend/src/main/resources/db/migration/`
+   `desafio-tecnico-like/backend/src/main/resources/db/migration/`
 8. Os testes automatizados estão localizados no diretório: <br>
-   `/backend/src/test/java/com/desafiolike/demo/`
+   `desafio-tecnico-like/backend/src/test/java/com/desafiolike/demo/`
 
 
 ## Tecnologias Utilizadas
