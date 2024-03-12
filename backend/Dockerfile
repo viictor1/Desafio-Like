@@ -3,7 +3,6 @@ COPY . /app
 WORKDIR /app
 RUN mvn package -DskipTests
 
-# Second stage: create a slim image
 FROM openjdk:17-jdk-alpine
 COPY --from=build /app/target/*.jar /like.jar
 ENTRYPOINT ["java", "-jar", "/like.jar"]
